@@ -1,0 +1,139 @@
+# ====================================================================
+# DOCKER-SPECIFIC REQUIREMENTS
+# Face Recognition Attendance System - Docker Container Dependencies
+# ====================================================================
+# This file contains all Python dependencies optimized for Docker deployment
+# Some packages are installed separately in Dockerfile for better layer caching
+# ====================================================================
+
+# ====================================================================
+# WEB FRAMEWORK AND API
+# ====================================================================
+
+# FastAPI - Modern, fast web framework for building APIs
+fastapi==0.104.1
+
+# ASGI server for production
+uvicorn[standard]==0.24.0
+
+# File upload support
+python-multipart==0.0.6
+
+# ====================================================================
+# FACE RECOGNITION AND COMPUTER VISION (Installed separately in Dockerfile)
+# ====================================================================
+
+# Note: These are installed separately in Dockerfile for better control
+# face-recognition==1.3.0
+# opencv-python==4.5.5.64
+# dlib==19.24.1
+# numpy==1.21.6
+# Pillow==9.5.0
+
+# ====================================================================
+# UTILITY LIBRARIES
+# ====================================================================
+
+# Progress bars for long operations
+tqdm>=4.64.0
+
+# Click for CLI utilities (used by some dependencies)
+click>=8.1.0
+
+# Decorator utilities
+decorator>=5.1.0
+
+# ====================================================================
+# NETWORKING AND HTTP
+# ====================================================================
+
+# HTTP client library
+requests>=2.28.0
+
+# URL handling
+urllib3>=1.26.12
+
+# Character encoding detection
+chardet>=5.0.0
+
+# Certificate handling
+certifi>=2022.12.7
+
+# Internationalized domain name support
+idna>=3.4
+
+# Windows certificate store (conditional)
+wincertstore>=0.2; sys_platform == "win32"
+
+# ====================================================================
+# DATA PROCESSING
+# ====================================================================
+
+# JSON Web Token support (optional, for future auth features)
+python-jose[cryptography]==3.3.0
+
+# Password hashing (optional, for future auth features)
+passlib[bcrypt]==1.7.4
+
+# ====================================================================
+# VIDEO AND MEDIA PROCESSING
+# ====================================================================
+
+# Video editing library
+moviepy>=1.0.3
+
+# FFMPEG support for moviepy
+imageio-ffmpeg>=0.4.5
+
+# Image I/O library
+imageio>=2.19.0
+
+# Progress logging for moviepy
+proglog>=0.1.10
+
+# ====================================================================
+# DEVELOPMENT AND DEBUGGING (Optional)
+# ====================================================================
+
+# Enhanced Python REPL (useful for debugging in container)
+ipython>=8.5.0
+
+# Memory profiling (useful for optimization)
+psutil>=5.9.0
+
+# ====================================================================
+# PRODUCTION OPTIMIZATIONS
+# ====================================================================
+
+# Fast JSON library (optional speedup)
+orjson>=3.8.0
+
+# Fast validation library (used by FastAPI)
+pydantic>=2.0.0
+
+# ASGI middleware
+starlette>=0.27.0
+
+# ====================================================================
+# DOCKER-SPECIFIC NOTES
+# ====================================================================
+
+# For GPU support (CUDA), you would need:
+# - Use nvidia/cuda base image instead of python:3.9-slim
+# - Install CUDA-enabled OpenCV
+# - Add GPU-specific dependencies
+
+# For ARM64/M1 Mac compatibility:
+# - Some compiled packages may need different versions
+# - Consider using platform-specific base images
+
+# Memory optimization for containers:
+# - Use --no-cache-dir with pip install
+# - Remove build dependencies after installation
+# - Use multi-stage builds for smaller images
+
+# Security considerations:
+# - Run as non-root user (handled in Dockerfile)
+# - Limit container capabilities
+# - Use specific versions instead of latest
+# - Regularly update base images for security patches
